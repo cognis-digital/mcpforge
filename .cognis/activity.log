@@ -36,3 +36,4 @@
 2025-10-17T19:09:39  docs: clarify usage notes
 2026-02-07T14:26:46  test: add edge case
 2026-05-31T09:43:53  refactor: tidy internals
+2024-06-10T17:09:39  chore(parser): add a --quiet mode
