@@ -37,3 +37,4 @@
 2026-02-07T14:26:46  test: add edge case
 2026-05-31T09:43:53  refactor: tidy internals
 2024-06-10T17:09:39  chore(parser): add a --quiet mode
+2024-07-05T12:26:46  test(deps): bump the dev toolchain
