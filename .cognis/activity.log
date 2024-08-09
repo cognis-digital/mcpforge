@@ -39,3 +39,4 @@
 2024-06-10T17:09:39  chore(parser): add a --quiet mode
 2024-07-05T12:26:46  test(deps): bump the dev toolchain
 2024-07-13T19:43:53  build(fixtures): guard against ReDoS in patterns
+2024-08-09T14:00:00  docs(output): extract the scorer
