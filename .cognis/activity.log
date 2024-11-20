@@ -45,3 +45,4 @@
 2024-09-20T11:51:21  chore: routine maintenance
 2024-10-16T18:08:28  feat(parser): extract the scorer
 2024-11-12T13:25:35  feat: with great power comes great test coverage
+2024-11-20T08:42:42  style(fixtures): add type hints to the public API
