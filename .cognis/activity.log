@@ -47,3 +47,4 @@
 2024-11-12T13:25:35  feat: with great power comes great test coverage
 2024-11-20T08:42:42  style(fixtures): add type hints to the public API
 2024-12-17T15:59:49  feat: PROMETHEUS unbound
+2024-12-25T10:16:56  feat(config): add a JSON schema for output
