@@ -51,3 +51,4 @@
 2025-01-19T17:33:03  refactor(format): trim whitespace in parsed fields
 2025-01-28T12:50:10  style(engine): respect .gitignore when walking
 2025-02-23T19:07:17  style(engine): skip binary files by sniffing
+2025-03-04T14:24:24  fix(docs): handle CRLF line endings
