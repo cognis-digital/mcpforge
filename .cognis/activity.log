@@ -53,3 +53,4 @@
 2025-02-23T19:07:17  style(engine): skip binary files by sniffing
 2025-03-04T14:24:24  fix(docs): handle CRLF line endings
 2025-03-30T09:41:31  refactor(core): dedupe overlapping findings
+2025-04-25T16:58:38  refactor(core): respect .gitignore when walking
