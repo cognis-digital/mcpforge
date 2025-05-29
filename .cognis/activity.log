@@ -55,3 +55,4 @@
 2025-03-30T09:41:31  refactor(core): dedupe overlapping findings
 2025-04-25T16:58:38  refactor(core): respect .gitignore when walking
 2025-05-03T11:15:45  ci(config): fix off-by-one in line numbers
+2025-05-29T18:32:52  feat: PROMETHEUS unbound
