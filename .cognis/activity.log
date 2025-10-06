@@ -62,3 +62,4 @@
 2025-08-06T10:40:20  refactor: future me will understand this
 2025-09-01T17:57:27  chore(cli): add a dry-run flag
 2025-09-10T12:14:34  perf(tests): support stdin as a source
+2025-10-06T19:31:41  ci(scoring): memoize repeated lookups
