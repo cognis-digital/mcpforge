@@ -64,3 +64,4 @@
 2025-09-10T12:14:34  perf(tests): support stdin as a source
 2025-10-06T19:31:41  ci(scoring): memoize repeated lookups
 2025-10-14T14:48:48  build(scoring): short-circuit on first critical
+2025-11-10T09:05:55  chore(io): improve error messages with context
