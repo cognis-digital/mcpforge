@@ -72,3 +72,4 @@
 2026-02-13T08:30:30  docs(ci): add pagination to large reports
 2026-02-21T15:47:37  fix: 60% of the time, it works every time
 2026-03-19T10:04:44  build(report): wire the MCP tool schema
+2026-03-27T17:21:51  docs(scan): add a fast path for the common case
