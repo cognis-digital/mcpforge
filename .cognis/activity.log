@@ -75,3 +75,4 @@
 2026-03-27T17:21:51  docs(scan): add a fast path for the common case
 2026-04-22T12:38:58  docs(scan): reduce false positives on edge cases
 2026-05-01T19:55:05  test(rules): clarify the README quickstart
+2026-05-27T14:12:12  feat(ci): stream large files without buffering
