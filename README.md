@@ -36,9 +36,13 @@ ride the MCP gold rush, dev-first viral
 <a name="features"></a>
 ## Features
 
-- ✅ Todo
-- ✅ Fixme
-- ✅ Xxx
+- ✅ Parse Spec
+- ✅ Lint Spec
+- ✅ Dispatch
+- ✅ Handle
+- ✅ Publish Manifest
+- ✅ Scaffold
+- ✅ Simulate
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
