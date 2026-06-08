@@ -1,0 +1,26 @@
+{
+  "name": "weather-mcp",
+  "version": "0.1.0",
+  "description": "A minimal MCP server exposing weather forecast and alert tools.",
+  "tools": [
+    {
+      "name": "get_forecast",
+      "description": "Get a multi-day weather forecast for a location.",
+      "params": {
+        "location": "string",
+        "days": "integer"
+      },
+      "required": ["location"],
+      "returns": "string"
+    },
+    {
+      "name": "get_alerts",
+      "description": "Get active weather alerts for a US state code.",
+      "params": {
+        "state": "string"
+      },
+      "required": ["state"],
+      "returns": "string"
+    }
+  ]
+}
