@@ -11,11 +11,10 @@ No third-party imports. Everything here is real, executable logic:
 """
 from __future__ import annotations
 
-import io
 import json
 import keyword
 import re
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 _IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
@@ -244,7 +243,6 @@ if __name__ == "__main__":
 
 
 # The generated source references the forge version; inject it literally.
-from . import __init__ as _selfpkg  # noqa: E402  (lazy, avoids cycle at import)
 
 
 def _gen_readme(spec: ServerSpec) -> str:

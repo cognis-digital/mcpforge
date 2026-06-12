@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-mcpforge
+pip install "git+https://github.com/cognis-digital/mcpforge.git"
 mcpforge scan .            # → prioritized findings in seconds
 ```
 
@@ -52,7 +52,7 @@ ride the MCP gold rush, dev-first viral
 ## Quick start
 
 ```bash
-pip install cognis-mcpforge
+pip install "git+https://github.com/cognis-digital/mcpforge.git"
 mcpforge --version
 mcpforge scan .                       # scan current project
 mcpforge scan . --format json         # machine-readable
