@@ -20,6 +20,34 @@ pip install cognis-mcpforge
 mcpforge scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install** (Python 3.8+, stdlib only):
+   ```bash
+   pip install mcpforge
+   ```
+   Note: `--format` is a **global** flag and must precede the subcommand.
+2. **Lint a server spec** before generating anything:
+   ```bash
+   mcpforge lint spec.json
+   ```
+   Exits `1` if the spec has errors.
+3. **Scaffold a full MCP server project** from the spec:
+   ```bash
+   mcpforge scaffold spec.json --out ./my-server     # --dry-run to preview without writing
+   ```
+   Scaffolding refuses to run while lint errors remain.
+4. **Simulate a JSON-RPC exchange** in-process and read the result:
+   ```bash
+   mcpforge --format json simulate spec.json --tool search --args '{"q":"hello"}' | jq .
+   ```
+   Result reports `protocolVersion`, `tools_listed`, `called`, and `call_result`; exits non-zero on failure.
+5. **Emit packaging metadata + gate CI**:
+   ```bash
+   mcpforge lint spec.json && mcpforge publish spec.json   # generates pyproject.toml + mcp-registry.json
+   ```
+
+
 ## Contents
 
 - [Why mcpforge?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
