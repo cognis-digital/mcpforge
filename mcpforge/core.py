@@ -53,7 +53,10 @@ class ServerSpec:
     tools: List[ToolSpec] = field(default_factory=list)
 
     def py_module(self) -> str:
-        return self.name.replace("-", "_")
+        mod = self.name.replace("-", "_")
+        if keyword.iskeyword(mod):
+            mod = mod + "_server"
+        return mod
 
 
 def parse_spec(data: Any) -> ServerSpec:
@@ -332,6 +335,14 @@ def simulate(spec: ServerSpec, tool: Optional[str] = None,
     network) and driven through initialize -> tools/list -> tools/call. This
     proves the scaffold actually runs and that the requested tool responds.
     """
+    if tool is not None:
+        known = {t.name for t in spec.tools}
+        if known and tool not in known:
+            raise SpecError(
+                f"tool '{tool}' not found in spec; available: "
+                + ", ".join(sorted(known))
+            )
+
     src = _gen_server_source(spec)
     ns: Dict[str, Any] = {}
     try:

@@ -116,5 +116,61 @@ class TestCLI(unittest.TestCase):
                                self._write(GOOD)]), 0)
 
 
+class TestHardening(unittest.TestCase):
+    """Tests for hardened error-handling and edge-case paths."""
+
+    def test_simulate_unknown_tool_raises(self):
+        """Requesting a non-existent tool name must raise SpecError, not KeyError."""
+        from mcpforge.core import SpecError, simulate
+        spec = parse_spec(GOOD)
+        with self.assertRaises(SpecError) as ctx:
+            simulate(spec, tool="no_such_tool")
+        self.assertIn("no_such_tool", str(ctx.exception))
+
+    def test_simulate_no_tools_ok(self):
+        """A spec with no tools (lint will flag it, but simulate should not crash)."""
+        from mcpforge.core import simulate
+        spec = parse_spec({"name": "empty-srv", "tools": []})
+        result = simulate(spec, tool=None)
+        # ok may be True or False depending on lint, but it must not raise
+        self.assertIsNone(result["called"])
+
+    def test_py_module_avoids_keyword(self):
+        """Server names that map to Python keywords must get a safe module name."""
+        spec = parse_spec({"name": "for", "tools": [{"name": "run"}]})
+        mod = spec.py_module()
+        import keyword as kw
+        self.assertFalse(kw.iskeyword(mod), f"py_module() returned keyword: {mod!r}")
+
+    def test_mcp_server_imports_cleanly(self):
+        """mcp_server.py must be importable without an ImportError."""
+        import importlib
+        # This would previously raise ImportError for missing scan/to_json
+        mod = importlib.import_module("mcpforge.mcp_server")
+        self.assertTrue(callable(mod.serve))
+
+    def test_cli_simulate_unknown_tool_exit2(self):
+        """CLI: simulate with --tool pointing at a non-existent tool exits 2."""
+        fd, path = tempfile.mkstemp(suffix=".json")
+        with os.fdopen(fd, "w") as fh:
+            json.dump(GOOD, fh)
+        try:
+            rc = main(["simulate", path, "--tool", "nonexistent_tool"])
+            self.assertEqual(rc, 2)
+        finally:
+            os.unlink(path)
+
+    def test_cli_invalid_args_json_exit2(self):
+        """CLI: simulate with malformed --args JSON exits 2 with clean error."""
+        fd, path = tempfile.mkstemp(suffix=".json")
+        with os.fdopen(fd, "w") as fh:
+            json.dump(GOOD, fh)
+        try:
+            rc = main(["simulate", path, "--args", "{not valid json"])
+            self.assertEqual(rc, 2)
+        finally:
+            os.unlink(path)
+
+
 if __name__ == "__main__":
     unittest.main()

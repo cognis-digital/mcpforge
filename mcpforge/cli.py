@@ -73,12 +73,15 @@ def _cmd_scaffold(args, fmt) -> int:
     files = scaffold(spec)
     written: List[str] = []
     if not args.dry_run:
-        for rel, content in files.items():
-            dest = os.path.join(args.out, rel)
-            os.makedirs(os.path.dirname(dest) or ".", exist_ok=True)
-            with open(dest, "w", encoding="utf-8") as fh:
-                fh.write(content)
-            written.append(dest)
+        try:
+            for rel, content in files.items():
+                dest = os.path.join(args.out, rel)
+                os.makedirs(os.path.dirname(dest) or ".", exist_ok=True)
+                with open(dest, "w", encoding="utf-8") as fh:
+                    fh.write(content)
+                written.append(dest)
+        except OSError as exc:
+            raise SpecError(f"cannot write output files: {exc}") from exc
     payload = {"ok": True, "server": spec.name, "out": args.out,
                "files": sorted(files.keys()),
                "written": sorted(written), "dry_run": args.dry_run}
@@ -156,14 +159,25 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Optional[List[str]] = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    fmt = getattr(args, "format", "table")
     try:
-        return args.func(args, args.format)
+        return args.func(args, fmt)
     except SpecError as exc:
         msg = {"ok": False, "error": str(exc)}
-        if args.format == "json":
+        if fmt == "json":
             print(json.dumps(msg, indent=2))
         else:
             print(f"error: {exc}", file=sys.stderr)
+        return 2
+    except KeyboardInterrupt:
+        print("interrupted", file=sys.stderr)
+        return 130
+    except Exception as exc:  # noqa: BLE001
+        msg = {"ok": False, "error": f"unexpected error: {exc}"}
+        if fmt == "json":
+            print(json.dumps(msg, indent=2))
+        else:
+            print(f"unexpected error: {exc}", file=sys.stderr)
         return 2
 
 
