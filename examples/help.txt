@@ -1,0 +1,18 @@
+$ mcpforge-emit --help
+
+usage: mcpforge [-h] [--version] [--format {table,json}]
+                {scaffold,lint,simulate,publish} ...
+
+Scaffold, test, and publish MCP servers in minutes.
+
+positional arguments:
+  {scaffold,lint,simulate,publish}
+    scaffold            generate a full MCP server project
+    lint                structural lint of a server spec
+    simulate            run a JSON-RPC exchange in-process
+    publish             emit publish-ready packaging metadata
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}

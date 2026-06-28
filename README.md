@@ -20,6 +20,57 @@ pip install cognis-mcpforge
 mcpforge scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ mcpforge-emit --version
+mcpforge 0.1.0
+```
+
+```console
+$ mcpforge-emit --help
+usage: mcpforge [-h] [--version] [--format {table,json}]
+                {scaffold,lint,simulate,publish} ...
+
+Scaffold, test, and publish MCP servers in minutes.
+
+positional arguments:
+  {scaffold,lint,simulate,publish}
+    scaffold            generate a full MCP server project
+    lint                structural lint of a server spec
+    simulate            run a JSON-RPC exchange in-process
+    publish             emit publish-ready packaging metadata
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+```
+
+> Blocks above are real `mcpforge` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Network Traffic",
+        "description": "Anomalous network traffic detected from IP 192.168.1.100",
+        "created_at": "2023-02-20T14:30:00Z",
+        "updated_at": "2023-02-20T14:30:01Z"
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** (Python 3.8+, stdlib only):

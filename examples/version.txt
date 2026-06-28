@@ -1,0 +1,3 @@
+$ mcpforge-emit --version
+
+mcpforge 0.1.0
